@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Finder</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Option 1: Include in HTML -->
+    <link rel="stylesheet" href=
+    "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+
+    <!-- class="bg-info bg-opacity-25" -->
+    <style>
+        body{
+            background-image: url("{{ url_for('static', filename='background.png') }}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- <img src="{{ url_for('static', filename='background.png') }}" alt="background"> -->
+
+    <div class="container">
+        
+        <div class="row">
+            
+            <h1 class="text-center mt-5" style="color: #6f42c1;"><i class="bi bi-cloud-lightning-rain-fill text-dark" style="color: white;"></i> MyCityWeather</h1>
+            <div class="col-md-6 offset-md-3">
+                <form action="" method="POST" class="mt-3">
+                    <div style="height: 300;">
+                        <label for="city" class="form-label mb-3">Enter city name:</label>
+                        <input type="text" class="form-control" id="cityName" name="cityName" placeholder="eg. Pune" required>
+                        <label for="city" class="form-label mt-3">Enter State name:</label>
+                        <input type="text" class="form-control" id="stateName" name="stateName" placeholder="eg. Maharashtra or MH" required>
+                        <label for="city" class="form-label mt-3">Enter country name:</label>
+                        <input type="text" class="form-control" id="countryName" name="countryName" placeholder="eg. India" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger mt-3">Find Weather</button>
+                    
+                </form>
+                {% if data %}
+                <div >
+              <p class="bg-primary-subtle bg-opacity-25 mt-3 ">
+                <strong class="text-center" style="font-size: large;">{{data.city}}, {{data.country}}</strong> <br>
+                <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="icon"> <strong>Temp:</strong>
+                {{data.temperature}}°C <br>
+                <strong >{{data.main}}:</strong> {{data.description}} <br>
+               <strong>Maxmimum temperature:</strong> {{data.maximum_temperature}}°C <br>
+               <strong>Minimum temperature:</strong> {{data.minimum_temperature}}°C <br>
+                <strong>humidity:</strong> {{data.humidity}}% <br>
+                <strong>speed:</strong> {{data.speed}} m/s <br>
+                
+                
+              </p>
+              </div>
+              {% endif %}
+            </div>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
